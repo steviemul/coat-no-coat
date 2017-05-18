@@ -4,6 +4,17 @@
 
     CNC_DATA.init();
 
+    var ANSWERS = {
+      0 : 'COAT',
+      1 : 'NO COAT'
+    };
+
+    var THRESHOLDS = {
+      'TEMP' : 14,
+      'WIND' : 20,
+      'RAIN' : 1
+    };
+
     return {
       tellMe : function(pLocation) {
         var lat = pLocation.latLng.lat();
@@ -17,10 +28,15 @@
             units:'metric'
           },
           function(result) {
-            var answer = CNC_DATA.ask(result.main.temp);
+            console.info(result);
 
-            alert("ANSWER : " + answer);
-            
+            var input = {
+              temp : result.main.temp < THRESHOLDS['TEMP'] ? 0 : 1
+            };
+
+            var answer = Math.round(CNC_DATA.ask(input));
+
+            alert("ANSWER : " + ANSWERS[answer]);
           }
         )
       }
