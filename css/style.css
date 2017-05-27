@@ -1,0 +1,56 @@
+#answer {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  opacity: 0;
+  z-index:-1;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+#answer[active] {
+  z-index:10;
+  background-color:black;
+  opacity: 0.8;
+}
+
+.prompt {
+  background-color: black;
+  border:1px solid gray;
+  border-radius: 400px;
+  width:250px;
+  height:250px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.prompt div {
+  text-align: center;
+}
+
+.prompt div img {
+  height:174px;
+  display: block;
+  margin:5px;
+}
+
+.prompt div button {
+  cursor: pointer;
+  color: white;
+  border: 1px solid #AEAEAE;
+  border-radius: 30px;
+  background: #605F61;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 0px;
+  padding: 11px 3px;  
+}
+
+.prompt div button:before {
+  content: "x";
+}

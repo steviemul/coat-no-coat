@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple click event</title>
+    <title>Coat / No Coat</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -20,6 +21,14 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="answer">
+      <div class="prompt">
+        <div>
+          <img src="images/cartman.png">
+          <button onclick="CNC.dismiss()"></button>  
+        </div>
+      </div>
+    </div>
     <script>
       function initMap() {
         var myLatlng = {lat: -25.363, lng: 131.044};
@@ -44,7 +53,7 @@
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4bSbLeCF6fkHO8I3-IpGWHVzBWQNwkNo&callback=initMap"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://wagenaartje.github.io/neataptic/cdn/neataptic.js"></script>
+    <script src="js/brain.js"></script>
     <script src="js/network.js"></script>
     <script src="js/coat.js"></script>
   </body>

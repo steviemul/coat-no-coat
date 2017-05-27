@@ -2,7 +2,7 @@
 
   window.CNC = function() {
 
-    CNC_DATA.init();
+    CNC_DATA.train();
 
     var ANSWERS = {
       0 : 'COAT',
@@ -14,6 +14,18 @@
       'WIND' : 20,
       'RAIN' : 1
     };
+
+    function analyse(temp, wind, rain) {
+
+      var answer = CNC_DATA.ask(temp, wind);
+      var result = answer.result;
+
+      console.info('ANSWER : ' + result);
+
+      return answer;
+    }
+
+    var prompt = document.getElementById('answer');
 
     return {
       tellMe : function(pLocation) {
@@ -28,17 +40,28 @@
             units:'metric'
           },
           function(result) {
-            console.info(result);
+            var answer = analyse(result.main.temp, result.wind.speed);
 
-            var input = {
-              temp : result.main.temp < THRESHOLDS['TEMP'] ? 0 : 1
-            };
+            var result = answer.result;
+            var imgSrc = 'images/kenny.png';
 
-            var answer = Math.round(CNC_DATA.ask(input));
+            if (result > 0.5) {
+              imgSrc = 'images/cartman.png';
+            }
 
-            alert("ANSWER : " + ANSWERS[answer]);
+            var image = prompt.getElementsByTagName('img')[0];
+            
+            image.src = imgSrc;
+
+            image.onload = function() {
+              prompt.setAttribute('active', true);
+            }
           }
         )
+      },
+      check : analyse,
+      dismiss : function() {
+        prompt.removeAttribute('active');
       }
     }
   }();
