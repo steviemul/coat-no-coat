@@ -13,8 +13,8 @@
 
 #answer[active] {
   z-index:10;
-  background-color:black;
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
 }
 
 .prompt {
@@ -49,6 +49,7 @@
   display: inline-block;
   line-height: 0px;
   padding: 11px 3px;  
+  outline: none;
 }
 
 .prompt div button:before {

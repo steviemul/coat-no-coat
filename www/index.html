@@ -4,7 +4,9 @@
     <title>Coat / No Coat</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <meta name="theme-color" content="blue">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -40,21 +42,35 @@
         });
 
         if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(function (position) {
-          myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          map.setCenter(myLatlng);
-         });
+          navigator.geolocation.getCurrentPosition(function (position) {
+            myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(myLatlng);
+            
+            CNC.tellMe(position.coords.latitude, position.coords.longitude);
+          });
         }
 
         map.addListener('click', function(location) {
-          CNC.tellMe(location);
+          CNC.tellMe(location.latLng.lat(), location.latLng.lng());
         });
       }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4bSbLeCF6fkHO8I3-IpGWHVzBWQNwkNo&callback=initMap"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/brain.js"></script>
     <script src="js/network.js"></script>
     <script src="js/coat.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4bSbLeCF6fkHO8I3-IpGWHVzBWQNwkNo&callback=initMap"></script>    
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+          .then(function(reg){
+            console.log("Service worker registered");
+          }).catch(function(err) {
+            console.log("Service worker failed to register ", err)
+          });
+      }
+      </script>
   </body>
 </html>
