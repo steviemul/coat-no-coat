@@ -1,26 +1,25 @@
 {
   "name": "Coat / No Coat",
-  "short_name":"Coat / No Coat",
-  "icons": [
-    {
-      "src": "images/cartman42x42.png",
-      "sizes": "42x42",
-      "type": "image/png"
-    },
-    {
-      "src": "images/cartman72x72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "images/cartman192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
+  "description": "Coat / No Coat Chrome extension",
+  "version": "0.0.0.2",
+  "manifest_version": 2,
+  "permissions": [
+    "geolocation",
+    "<all_urls>",
+    "background",
+    "tabs",
+    "notifications"
   ],
-  "start_url":"index.html",
-  "display":"standalone",
-  "orientation":"portrait",
-  "background_color":"blue",
-  "theme_color":"blue"
+  "background" : {
+    "page":"background.html"
+  },
+  "icons": {
+    "72": "images/cartman72x72.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "42": "images/cartman42x42.png"
+    },
+    "default_title": "Coat / No Coat"
+  }
 }
